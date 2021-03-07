@@ -1,19 +1,20 @@
 import { Button, Card, CardActions, CardContent, Grid, Typography } from "@material-ui/core";
 import React from "react";
-import download from "../img/download.jpg"
-const RecipeCard=()=>{
+import { Markup } from 'interweave';
+const RecipeCard=({recipe})=>{
 return(
 <Card  style={{marginTop:20}}>
 <CardContent>
     <Grid container direction="column" justify="center" spacing={1} alignItems="center">
         <Grid item>
-            <img style={{width:200}} src={download }alt=""/>
+            <img style={{width:400}} src={recipe['image'] }alt=""/>
         </Grid>
         <Grid item>
-            <Typography>Recipe Name</Typography>
+            <Typography variant="h5" align="center">{recipe['title']}</Typography>
         </Grid>
         <Grid item>
-            <Typography>Recipe Descripton</Typography>
+        <Markup  content={recipe['summary']} />
+ 
         </Grid>
     </Grid>
 </CardContent>
