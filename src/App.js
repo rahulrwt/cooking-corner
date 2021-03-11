@@ -6,6 +6,7 @@ import { Grid } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { getRandomRecipes } from './api/Api'
 import Menu from './componenets/Menu'
+import RecipeDetails from './componenets/RecipeDetails';
 function App() {
   const [recipes,setRecipes]=useState([]);
  
@@ -25,13 +26,13 @@ function App() {
       <Grid sm="3">
           <Menu/>
       </Grid>
-          <Grid sm="6">         
+          <Grid sm="6">        
              { recipes.map((recipe)=>(          //changed ( to {       
               <RecipeCard recipe={recipe} /> 
              )) }
         </Grid>
         <Grid sm="3">
-
+                <RecipeDetails id="98839"/>
         </Grid>
       </Grid>
 

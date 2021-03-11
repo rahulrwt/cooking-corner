@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import RecipeDetails from './componenets/RecipeDetails';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <RecipeDetails id="98839"/>
   </React.StrictMode>,
   document.getElementById('root')
 );
