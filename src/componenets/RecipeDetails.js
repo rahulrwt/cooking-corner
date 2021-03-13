@@ -8,11 +8,14 @@ import SimilarRecipe from './SimilarRecipes';
 
  
   
-const RecipeDetails=({id})=>{
-    
+const RecipeDetails=({match:{params:{id}}})=>{
+
     const [recipe,setRecipe]=useState({});
     const [similarRecipe,setSimilarRecipe]=useState([]);
     const [steps,setSteps]=useState([]);
+   
+
+
     useEffect(()=>{
         getRecipeDetails(id)
         .then((data)=>{
@@ -31,7 +34,9 @@ const RecipeDetails=({id})=>{
         })
         .catch((error)=>alert("Could not load similar Recipe"+error))
       },[])
-        
+      useEffect(()=>{
+        document.title=  recipe['title']  +"|| Cooking Corner";
+    },[])
       return(
           <> 
           <Typography variant="h4" align="center"> {recipe['title']}</Typography>

@@ -1,6 +1,7 @@
 import { Button, Card, CardActions, CardContent, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import { Markup } from 'interweave';
+import {Link} from 'react-router-dom';
 const RecipeCard=({recipe})=>{
 return(
 <Card  style={{marginTop:20}}>
@@ -20,12 +21,14 @@ return(
 </CardContent>
 <CardActions>
     <Grid container justify="center">
+    <Link to={`/recipedetails/${recipe['id']}`} >
     <Button variant="contained"
-               color="primary" 
+               color="primary"
                style={{marginRight:15}}
                >
                     Show Details
                 </Button>
+                </Link>
                 
     </Grid>
 </CardActions>
