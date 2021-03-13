@@ -4,6 +4,7 @@ import { getRecipeDetails } from '../api/Api';
 import { Card, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import RecipeSteps from './RecipeSteps';
+
 const RecipeDetails=({id})=>{
 
     const [recipe,setRecipe]=useState({});
@@ -37,6 +38,7 @@ const RecipeDetails=({id})=>{
                     <TableCell>{recipe['aggregateLikes']} <ThumbUpAltIcon/></TableCell>
                 </TableBody>
             </Table>
+            
          </TableContainer>
           {
                  steps.map((step)=>(
