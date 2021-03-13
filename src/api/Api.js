@@ -20,3 +20,11 @@ export const getRandomRecipeJoke=()=>{
         .then((response)=>response.json())
         .catch((error)=>console.log(error))
     };
+
+    export const getSimilarRecipe=(id)=>{
+        const url=`https://api.spoonacular.com/recipes/${id}/similar?apiKey=${api_key}&number=6`
+           return fetch(url)
+           .then((response)=>response.json())
+           .catch((error)=>console.log(error))
+       };
+   

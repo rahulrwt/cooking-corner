@@ -1,15 +1,17 @@
 import {  Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-import { getRecipeDetails } from '../api/Api';
+import { getRecipeDetails, getSimilarRecipe } from '../api/Api';
 import { Card, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import RecipeSteps from './RecipeSteps';
+import SimilarRecipe from './SimilarRecipes';
 
  
   
 const RecipeDetails=({id})=>{
 
     const [recipe,setRecipe]=useState({});
+    const [similarRecipe,setSimilarRecipe]=useState([]);
     const [steps,setSteps]=useState([]);
     useEffect(()=>{
         getRecipeDetails(id)
@@ -20,6 +22,14 @@ const RecipeDetails=({id})=>{
         .catch((error)=>alert("Could not load Recipe"+error))
       },[])
     
+      useEffect(()=>{
+        getSimilarRecipe(id)
+        .then((data)=>{
+            setSimilarRecipe(data);
+             console.log("similar Recipe"+similarRecipe);
+        })
+        .catch((error)=>alert("Could not load Recipe"+error))
+      },[])
         
       return(
           <> 
@@ -48,6 +58,13 @@ const RecipeDetails=({id})=>{
                  ))
                     
            }
+           <Typography align="center" variant="h5">Similar Recipe</Typography>
+            {
+                 similarRecipe.map((recipe)=>(
+                    <SimilarRecipe recipe={recipe} />
+                 ))
+                    
+           }                  
           </>
       )
 };
