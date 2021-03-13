@@ -5,6 +5,8 @@ import { Card, Table, TableBody, TableCell, TableContainer, TableHead, TableRow 
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import RecipeSteps from './RecipeSteps';
 
+ 
+  
 const RecipeDetails=({id})=>{
 
     const [recipe,setRecipe]=useState({});
@@ -22,7 +24,7 @@ const RecipeDetails=({id})=>{
       return(
           <> 
           <Typography variant="h4" align="center"> {recipe['title']}</Typography>
-          <img style={{width:"200",marginLeft:"25%"}}  src={recipe['image'] }alt=""/>
+          <img width="350" style={{ marginLeft:"35%"}}  src={recipe['image'] }alt=""/>
           <TableContainer component={Card}>
             <Table >
                 <TableHead>
