@@ -7,7 +7,7 @@ import RecipeDetails from './componenets/RecipeDetails';
 
 ReactDOM.render(
   <React.StrictMode>
-    <RecipeDetails id="98839"/>
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );

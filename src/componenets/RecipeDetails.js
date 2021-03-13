@@ -1,4 +1,4 @@
-import {  Typography } from '@material-ui/core';
+import {  Paper,  Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { getRecipeDetails, getSimilarRecipe } from '../api/Api';
 import { Card, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
@@ -9,17 +9,18 @@ import SimilarRecipe from './SimilarRecipes';
  
   
 const RecipeDetails=({id})=>{
-
+    
     const [recipe,setRecipe]=useState({});
     const [similarRecipe,setSimilarRecipe]=useState([]);
     const [steps,setSteps]=useState([]);
     useEffect(()=>{
         getRecipeDetails(id)
         .then((data)=>{
+            console.log(data);
             setRecipe(data);
             setSteps(data.analyzedInstructions[0].steps);
         })
-        .catch((error)=>alert("Could not load Recipe"+error))
+        .catch((error)=>alert("Could not load Recipe "+error))
       },[])
     
       useEffect(()=>{
@@ -28,7 +29,7 @@ const RecipeDetails=({id})=>{
             setSimilarRecipe(data);
              console.log("similar Recipe"+similarRecipe);
         })
-        .catch((error)=>alert("Could not load Recipe"+error))
+        .catch((error)=>alert("Could not load similar Recipe"+error))
       },[])
         
       return(
@@ -58,8 +59,12 @@ const RecipeDetails=({id})=>{
                  ))
                     
            }
+              <Paper variant="outlined" style={{margin:30}} />
            <Typography align="center" variant="h5">Similar Recipe</Typography>
-            {
+            
+            
+           {
+
                  similarRecipe.map((recipe)=>(
                     <SimilarRecipe recipe={recipe} />
                  ))
