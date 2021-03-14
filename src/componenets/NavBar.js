@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import {   Toolbar, Typography } from '@material-ui/core';
+import {   Typography } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { getRandomRecipeJoke } from '../api/Api';
-import HomeIcon from '@material-ui/icons/Home';
+ 
 import {Link} from 'react-router-dom';
 import cooking_corner from "../img/cookingCorner.png";
+import Search from './Search';
 const NavBar=()=>{
     const[joke,setJoke]=useState([]);
     
@@ -14,7 +15,7 @@ const NavBar=()=>{
     .then((data)=>{
       setJoke(data);
     })
-    .catch((error)=>alert("Could not load joke"))
+    .catch((error)=>alert("Could not load joke"+error))
   },[])
 
   const newJoke=()=>{
@@ -32,10 +33,7 @@ const NavBar=()=>{
           <Link exact to ="/" style={{ alignSelf: 'center' }}>
         <img  src={cooking_corner} alt="logo" />
         </Link>
-        <form align="right">
-        <SearchIcon/>
-        <input className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" />
-        </form>
+         <Search/>
          <Typography onClick={newJoke} align="center" >{joke['text']}</Typography>
          
     </AppBar>
