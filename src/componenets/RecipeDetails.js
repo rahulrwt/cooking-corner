@@ -30,10 +30,11 @@ const RecipeDetails=({match:{params:{id}}})=>{
         getSimilarRecipe(id)
         .then((data)=>{
             setSimilarRecipe(data);
-             console.log("similar Recipe"+similarRecipe);
+              
         })
         .catch((error)=>alert("Could not load similar Recipe"+error))
       },[])
+      
       useEffect(()=>{
         document.title=  recipe['title']  +"|| Cooking Corner";
     },[])
