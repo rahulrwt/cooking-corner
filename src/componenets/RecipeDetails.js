@@ -37,7 +37,7 @@ const RecipeDetails=({match:{params:{id}}})=>{
       
       useEffect(()=>{
         document.title=  recipe['title']  +"|| Cooking Corner";
-    },[])
+    },[recipe])
       return(
           <> 
           <Typography variant="h4" align="center"> {recipe['title']}</Typography>

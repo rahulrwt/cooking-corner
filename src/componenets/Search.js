@@ -1,5 +1,7 @@
+import { Button } from '@material-ui/core';
 import React ,{useState} from 'react';
-
+import SearchResult from './SearchResult';
+import {Link} from 'react-router-dom';
 const Search=()=>{
     const [searchRecipe,setSearchRecipe]=useState([]);
     const userInput=e=>{
@@ -12,8 +14,10 @@ const Search=()=>{
             console.log('do validate');
           } 
     }
-
+    
     return(
+        <form
+         >
         <input
           placeholder="Search Recipe"
           value={searchRecipe}
@@ -22,6 +26,14 @@ const Search=()=>{
           style={{ width:'200px' , marginLeft: "auto"}}
           
         />
+         <Link to={`/searchresult/${searchRecipe}`}>
+         <Button
+         variant="contained"
+               color="primary"
+               style={{marginRight:15}}>search</Button>
+         </Link>
+        
+        </form>
     )
 };
 export default Search;

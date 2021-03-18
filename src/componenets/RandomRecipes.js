@@ -18,14 +18,14 @@ const RandomRecipes=()=>{
     document.title="Home || Cooking Corner";
 },[])
 
-    return(
-         <div>
-             {
-           recipes.map((recipe)=>(
-               <RecipeCard recipe={recipe}/>
-           ))
-        }
-           </div> 
-    )
+return(
+  <div>
+      {
+    recipes.map((recipe)=>(
+        <RecipeCard recipe={recipe}/>
+    ))
+ }
+    </div>
+)
 }
 export default RandomRecipes;
