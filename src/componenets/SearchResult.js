@@ -6,7 +6,7 @@ import RecipeCard from './RecipeCard';
 const SearchResult=({match:{params:{recipeName}}})=>{
     const [recipes,setRecipes]=useState(null);
     const [isLoaded,setIsLoaded]=useState(false);
-    const [recipeDetails,setRecipeDetails]=useState([]);
+    const [recipeDetails,setRecipeDetails]=useState(null);
     const [num,setNum]=useState();
     
  
@@ -32,12 +32,12 @@ const SearchResult=({match:{params:{recipeName}}})=>{
   
       
  if(isLoaded)
-    return(
-         
-        <div>
-          
+   {
+      if(recipeDetails!=null)
+    {
+      return(       
+        <div> 
           {
-          
           recipeDetails.map((recipe)=>(
               <RecipeCard  recipe={recipe}/>
           ))
@@ -45,6 +45,15 @@ const SearchResult=({match:{params:{recipeName}}})=>{
 
     </div>
    )
+  }
+  else
+  {
+return <div> 
+    <h1>No Such Recipe Found</h1>
+
+    </div>
+  }
+}
    else{
      return<h1>Loading</h1>
    }

@@ -49,12 +49,15 @@ const RecipeDetails=({match:{params:{id}}})=>{
                         <TableCell>Servings</TableCell>
                         <TableCell>Total Time</TableCell>
                         <TableCell>Aggregate Likes</TableCell>
+                        <TableCell>healthScore</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     <TableCell>{recipe['servings']} Servings</TableCell>
                     <TableCell>{recipe['readyInMinutes']} Min</TableCell>
                     <TableCell>{recipe['aggregateLikes']} <ThumbUpAltIcon/></TableCell>
+                    <TableCell>{recipe['healthScore']} </TableCell>
+                    
                 </TableBody>
             </Table>
             

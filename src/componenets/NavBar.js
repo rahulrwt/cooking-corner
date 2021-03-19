@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import {   Typography } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { getRandomRecipeJoke } from '../api/Api';
- 
+import PersonIcon from '@material-ui/icons/Person';
 import {Link} from 'react-router-dom';
 import cooking_corner from "../img/cookingCorner.png";
 import Search from './Search';
@@ -25,15 +25,19 @@ const NavBar=()=>{
       setJoke(data);
     })
     .catch((error)=>alert("Could not load joke"))
-
   }
 
     return(
         <AppBar position="static"  >
-          <Link exact to ="/" style={{ alignSelf: 'center' }}>
-        <img  src={cooking_corner} alt="logo" />
+          <Link exact to ="/" style={{ alignSelf: 'center'}}>
+        <img  src={cooking_corner} alt="logo"/>
         </Link>
          <Search/>
+         
+         <Link exact to='/login' style={{ alignSelf: 'flex-end' }}>
+         <b>Login</b> 
+         <PersonIcon/>
+         </Link>
          <Typography onClick={newJoke} align="center" >{joke['text']}</Typography>
          
     </AppBar>

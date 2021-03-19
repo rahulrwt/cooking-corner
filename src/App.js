@@ -10,6 +10,8 @@ import RecipeDetails from './componenets/RecipeDetails';
 import {Route,Switch} from "react-router-dom";
 import RandomRecipes from './componenets/RandomRecipes';
 import SearchResult from './componenets/SearchResult';
+import Login from './componenets/Login';
+import SignUp from './componenets/SignUp';
 
 function App() {
 
@@ -28,14 +30,19 @@ function App() {
       <Route exact path='/' component={RandomRecipes}/>
       <Route exact path='/recipedetails/:id' component={RecipeDetails}/>
       <Route exact path='/searchresult/:recipeName' component={SearchResult}/>
+      <Route exact path='/login' component={Login}/>  
+      <Route exact path='/signup' component={SignUp}/>  
       <Route  component={Error}/>
-      
+
+
     </Switch>  
             
         </Grid>
         <Grid sm="3">
-                  
+       
+   
         </Grid>
+        
       </Grid>
 
      </>
