@@ -1,0 +1,12 @@
+name : Github action for cooking corner
+on : push
+jobs : 
+  build :
+    runs-on : ubuntu-latest
+    steps :
+    - name : Step 1 - Checkout to main branch 
+      uses : actions/checkoutv@v2
+    - name : Step 2 - Install nodejs
+    - run : sudo apt update 
+    - run : sudo apt install Node.js 
+    - run : sudo apt install npm 
