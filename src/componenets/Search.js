@@ -1,6 +1,5 @@
 import { Button } from '@material-ui/core';
 import React ,{useState} from 'react';
-import SearchResult from './SearchResult';
 import {Link} from 'react-router-dom';
 const Search=()=>{
     const [searchRecipe,setSearchRecipe]=useState([]);

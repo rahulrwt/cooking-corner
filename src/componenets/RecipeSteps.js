@@ -1,8 +1,7 @@
-import { Avatar, List, ListItem, ListItemAvatar, Paper,  Typography } from '@material-ui/core';
+import { List, Paper,  Typography } from '@material-ui/core';
  
 import React, { useEffect, useState } from 'react';
 import Ingredients from './Ingredients';
-import ImageIcon from '@material-ui/icons/Image';
 const RecipeSteps=( {step})=>{
  
   const [ingredients,setIngredients]=useState([]);

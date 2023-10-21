@@ -7,11 +7,11 @@ const SearchResult=({match:{params:{recipeName}}})=>{
     const [recipes,setRecipes]=useState(null);
     const [isLoaded,setIsLoaded]=useState(false);
     const [recipeDetails,setRecipeDetails]=useState([]);
-    const [num,setNum]=useState();
+    // const [num,setNum]=useState();
     
  
     useEffect( ()=>{
-      if(isLoaded==false)
+      if(isLoaded===false)
    {
        getRecipesBySearch(recipeName,setRecipes,setIsLoaded)
   }
