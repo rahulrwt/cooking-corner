@@ -23,8 +23,8 @@ jobs:
       - name : Step 3 - Login to docker registry 
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: rahulrwt
+          password: dckr_pat_Pr1lr87VA-aqedaePDqFaUJUINA
 
       - name : Step 4 - Create docker image and push
         run: |
