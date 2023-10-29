@@ -1,4 +1,4 @@
-name: Github action for cooking corner
+name: Continuous Integrations
 on:
   push:
     branches:
