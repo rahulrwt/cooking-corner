@@ -5,7 +5,12 @@ terraform {
       version = "~> 4.16"
     }
   }
-
+  backend "s3" {
+      bucket                  = "cooking-corner-terraform-s3"
+      key                     = "cooking-corner-state"
+      region                  = "ap-south-1"
+      shared_credentials_file = "~/.aws/credentials"
+  }
   required_version = ">= 1.2.0"
 }
 
@@ -33,6 +38,12 @@ resource "aws_instance" "cookingcorner_ec2" {
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.cooking-corner-sg.id]
   key_name = "cooking-corner-key-pair"
+  user_data = <<-EOF
+              #!/bin/bash
+              echo "This script is running from terraform" > /tmp/user_data_output.txt
+              curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+              sudo apt install nodejs
+              EOF
   tags = {
     Name = "CookingCorner"
   }
