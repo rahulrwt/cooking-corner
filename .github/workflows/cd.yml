@@ -1,9 +1,6 @@
 name: Continuous Deployment 
 
 on:
-  push:
-    branches:
-      - main
   workflow_run:
     workflows: ["Continuous Integration"]
     types:
@@ -42,6 +39,8 @@ jobs:
 
       - name: Run Deployment Script
         run: |
+          ls
+          chmod +x run.sh
           run.sh
         working-directory: ./Deployment
 
