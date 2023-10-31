@@ -43,6 +43,8 @@ resource "aws_instance" "cookingcorner_ec2" {
               echo "This script is running from terraform" > /tmp/user_data_output.txt
               curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
               sudo apt install nodejs
+              cd ~
+              git clone https://github.com/rahulrwt/cooking-corner.git
               EOF
   tags = {
     Name = "CookingCorner"
@@ -71,6 +73,13 @@ resource "aws_security_group" "cooking-corner-sg" {
   ingress {
     from_port   = 443
     to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 3000
+    to_port     = 3000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }

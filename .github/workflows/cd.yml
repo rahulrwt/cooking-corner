@@ -40,3 +40,8 @@ jobs:
           terraform apply -auto-approve tfplan
         working-directory: ./terraform
 
+      - name: Run Deployment Script
+        run: |
+          run.sh
+        working-directory: ./Deployment
+
