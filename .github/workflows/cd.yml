@@ -40,7 +40,5 @@ jobs:
       - name: Run Deployment Script
         run: |
           ls
-          chmod +x run.sh
-          run.sh
         working-directory: ./Deployment
 
