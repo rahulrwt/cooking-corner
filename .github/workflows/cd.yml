@@ -40,7 +40,6 @@ jobs:
 
       - name: Run Deployment Script
         run: |
-          aws configure
           aws sts get-caller-identity
           ls
           chmod +x run.sh
