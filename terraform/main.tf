@@ -18,26 +18,16 @@ provider "aws" {
   region  = "ap-south-1"
 }
 
-resource "aws_key_pair" "cooking-corner-key-pair" {
-  key_name = "cooking-corner-key-pair"
-  public_key = tls_private_key.rsa.public_key_openssh
-}
-
-resource "tls_private_key" "rsa" {
-  algorithm = "RSA"
-  rsa_bits  = 4096
-}
-
-resource "local_file" "cooking-corner-key-pair" {
-  content  = tls_private_key.rsa.private_key_pem
-  filename = "cooking-corner-key-pair"
+resource "aws_key_pair" "cooking-corner-key" {
+  key_name   = "cooking-corner-key-pair"
+  public_key = file("./cooking-corner-key-pair.pem")
 }
 
 resource "aws_instance" "cookingcorner_ec2" {
   ami           = "ami-0287a05f0ef0e9d9a"
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.cooking-corner-sg.id]
-  key_name = "cooking-corner-key-pair"
+  key_name = aws_key_pair.cooking-corner-key.key_name
   user_data = <<-EOF
               #!/bin/bash
               echo "This script is running from terraform" > /tmp/user_data_output.txt

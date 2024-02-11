@@ -25,7 +25,7 @@ jobs:
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws configure set default.region ap-south-1
           aws s3 cp s3://cooking-corner-codepipeline/credentials/awsCred.txt . 
-          aws sts get-caller-identity
+          ls
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -37,9 +37,11 @@ jobs:
 
       - name: Plan and Apply
         run: |
+          aws s3 cp s3://cooking-corner-codepipeline/EC2_key_pair/cooking-corner-key-pair.pem cooking-corner-key-pair.pem
+          chmod 400 "cooking-corner-key-pair.pem"
+          ls
           terraform plan -input=false -out=tfplan
           terraform apply -auto-approve tfplan
-          aws s3 ls
           aws s3 cp s3://cooking-corner-terraform-s3/cooking-corner-state terraform-state.json
           aws sts get-caller-identity
           ls
