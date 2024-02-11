@@ -1,4 +1,4 @@
-This is a React js based front-end application which is using
+Explore this React-based application repository featuring a streamlined CI/CD pipeline powered by GitHub Actions. The automated workflows ensure code quality, while Terraform handles AWS infrastructure provisioning for seamless deployment and scalability. 
 ## Available Scripts
 
 In the project directory, you can run:
@@ -35,10 +35,3 @@ c. Run Reactjs tests
 d. Login to docker registry
 e. Create docker image and push it to docker registry
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
