@@ -25,6 +25,7 @@ jobs:
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws configure set default.region ap-south-1
           aws s3 cp s3://cooking-corner-codepipeline/credentials/awsCred.txt . 
+          aws sts get-caller-identity
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -40,9 +41,21 @@ jobs:
           terraform apply -auto-approve tfplan
           aws s3 ls
           aws s3 cp s3://cooking-corner-terraform-s3/cooking-corner-state .
+          aws sts get-caller-identity
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_EC2_METADATA_DISABLED: true
         working-directory: ./terraform
 
+      - name: Run Deployment Script
+        run: | 
+          aws s3 ls
+          chmod +x run.sh
+          cat run.sh
+          sudo ./run.sh
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_EC2_METADATA_DISABLED: true
+        working-directory: ./Deployment
