@@ -40,8 +40,9 @@ jobs:
           terraform plan -input=false -out=tfplan
           terraform apply -auto-approve tfplan
           aws s3 ls
-          aws s3 cp s3://cooking-corner-terraform-s3/cooking-corner-state .
+          aws s3 cp s3://cooking-corner-terraform-s3/cooking-corner-state terraform-state.json
           aws sts get-caller-identity
+          ls
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -51,11 +52,10 @@ jobs:
       - name: Run Deployment Script
         run: | 
           aws s3 ls
-          chmod +x run.sh
-          cat run.sh
-          sudo ./run.sh
+          private_dns=$(jq -r '.resources[0].instances[0].attributes.private_dns' terraform-state.json)
+          echo $private_dns
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_EC2_METADATA_DISABLED: true
-        working-directory: ./Deployment
+        working-directory: ./terraform
