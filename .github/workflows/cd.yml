@@ -24,7 +24,6 @@ jobs:
           aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws s3 cp s3://cooking-corner-codepipeline/credentials/awsCred.txt . 
-          ls
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -38,20 +37,7 @@ jobs:
         run: |
           terraform plan -input=false -out=tfplan
           terraform apply -auto-approve tfplan
-        working-directory: ./terraform
-
-      - name: Run Deployment Script
-        run: |
-          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws s3 cp s3://cooking-corner-codepipeline/credentials/awsCred.txt .
           ls
-          chmod +x run.sh
-          cat run.sh
-          sudo ./run.sh
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_EC2_METADATA_DISABLED: true
-        working-directory: ./Deployment
+          aws s3 cp cooking-corner-key-pair* s3://cooking-corner-codepipeline/EC2_key_pair
+        working-directory: ./terraform
 
