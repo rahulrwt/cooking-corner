@@ -8,4 +8,4 @@ ls
 source awsCred.txt
 export AWS_ACCESS_KEY_ID=$aws_access_key_id
 export AWS_SECRET_ACCESS_KEY=$aws_secret_access_key
-echo "AWS keys has been set successfully"
+echo "AWS keys has been set successfullyy"
