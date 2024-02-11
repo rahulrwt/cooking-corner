@@ -37,7 +37,7 @@ jobs:
         run: |
           terraform plan -input=false -out=tfplan
           terraform apply -auto-approve tfplan
-          ls
-          aws s3 cp cooking-corner-key-pair* s3://cooking-corner-codepipeline/EC2_key_pair
+          aws s3 ls
+          aws s3 cp cooking-corner-key-pair s3://cooking-corner-codepipeline/EC2_key_pair/
         working-directory: ./terraform
 
