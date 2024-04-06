@@ -6,8 +6,10 @@ terraform {
     }
   }
   backend "s3" {
+      encrypt                 = true 
+      dynamodb_table          = "terraform-state-lock-dynamo"
       bucket                  = "cooking-corner-terraform-s3"
-      key                     = "cooking-corner-state"
+      key                     = "terraform.tfstate"
       region                  = "ap-south-1"
       shared_credentials_file = "~/.aws/credentials"
   }
@@ -18,23 +20,24 @@ provider "aws" {
   region  = "ap-south-1"
 }
 
-resource "aws_key_pair" "cooking-corner-key" {
-  key_name   = "cooking-corner-key-pair"
-  public_key = file("./cooking-corner-key-pair.pem")
-}
 
 resource "aws_instance" "cookingcorner_ec2" {
   ami           = "ami-0287a05f0ef0e9d9a"
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.cooking-corner-sg.id]
-  key_name = aws_key_pair.cooking-corner-key.key_name
+  key_name = "cooking-corner-key-pair"  // This file is created and already stored in S3 bucket
+
   user_data = <<-EOF
               #!/bin/bash
-              echo "This script is running from terraform" > /tmp/user_data_output.txt
-              curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-              sudo apt install nodejs
+              echo "This script is running from Terraform" >> /tmp/user_data_output.txt 2>&1
+              curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash - >> /tmp/user_data_output.txt 2>&1
+              sudo apt install nodejs >> /tmp/user_data_output.txt 2>&1
               cd ~
-              git clone https://github.com/rahulrwt/cooking-corner.git
+              git clone https://github.com/rahulrwt/cooking-corner.git >> /tmp/user_data_output.txt 2>&1
+              ls
+              git clone https://github.com/rahulrwt/cooking-corner.git >> /tmp/user_data_output.txt 2>&1
+              echo "This is after clone" >> /tmp/user_data_output.txt 2>&1
+              ls
               EOF
   tags = {
     Name = "CookingCorner"
