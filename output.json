@@ -1,0 +1,17 @@
+{
+  "app_server_asg_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "app-server-asg"
+  },
+  "app_server_launch_template_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "lt-0119c3c12dd75dcd5"
+  },
+  "app_server_subnet": {
+    "sensitive": false,
+    "type": "string",
+    "value": "subnet-00c4e99c26398b671"
+  }
+}
