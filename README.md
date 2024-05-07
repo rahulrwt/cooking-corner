@@ -1,4 +1,5 @@
 Explore this React-based application repository featuring a streamlined CI/CD pipeline powered by GitHub Actions. The automated workflows ensure code quality, while Terraform handles AWS infrastructure provisioning for seamless deployment and scalability. 
+Ref https://github.com/rahulrwt/infrastructure-as-code for setting up infrastructure for the application
 ## Available Scripts
 
 In the project directory, you can run:
